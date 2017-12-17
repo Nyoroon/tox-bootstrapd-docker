@@ -3,6 +3,14 @@
 
 # Dockerized tox-bootstrapd based on Alpine linux
 
+This image uses autoconfiguration and updates bootstrap nodes on every lauch.
+All available configuration parameters you can see in `.env.example`.
+If you don't want to use autoconfiguration from environment variables then just
+put your config file in /etc/tox-bootstrap.conf with volume or modifying
+Dockerfile.
+If you don't want to autoupdate bootstrap nodes every lauch then set environment
+variable `TOX_UPDATE_NODES` to `no`.
+
 ## How to use
 
 ### Using docker-compose
@@ -14,10 +22,10 @@
 ### Using docker
 1. Copy .env.example to .env and edit it
 2. `docker build -t nyoroon/tox-bootstrapd .` (optional)
-3.
-```
-docker run --detach --name tox-bootstrapd \
-  --volume toxdata:/var/lib/tox-bootstrapd \
-  --port 33445:33445/udp --port 33445:33445 \
-  --env-file .env nyoroon/tox-bootstrapd
-```
+3. Run image with:
+    ```
+    docker run --detach --name tox-bootstrapd \
+      --volume toxdata:/var/lib/tox-bootstrapd \
+      --port 33445:33445/udp --port 33445:33445 \
+      --env-file .env nyoroon/tox-bootstrapd
+    ```
