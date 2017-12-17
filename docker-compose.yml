@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  app:
+    container_name: tox-bootstrapd
+    image: nyoroon/tox-bootstrapd
+    build: .
+    env_file: .env
+    ports:
+      - '33445:33445'
+      - '33445:33445/udp'
+    volumes:
+      - data:/var/lib/tox-bootstrapd
+
+volumes:
+  data: {}
