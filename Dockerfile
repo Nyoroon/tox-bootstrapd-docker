@@ -5,8 +5,8 @@ ARG TOXCORE_VERSION=v0.1.10
 WORKDIR /src
 
 # install build deps
-RUN apk add --no-cache gcc g++ musl-dev cmake git make libsodium-dev \
-    libconfig-dev yasm linux-headers
+RUN apk add --no-cache build-base cmake git libsodium-dev libconfig-dev yasm \
+    linux-headers
 
 # download toxcore
 RUN git clone https://github.com/TokTok/c-toxcore.git .
@@ -15,6 +15,7 @@ RUN git checkout ${TOXCORE_VERSION}
 # build and install
 RUN cmake . -DBUILD_TOXAV=OFF -DENABLE_STATIC=OFF
 RUN make -j$(nproc) && make install
+RUN strip /usr/local/bin/tox-bootstrapd
 
 
 FROM alpine:latest
