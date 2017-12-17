@@ -1,4 +1,7 @@
-# Dockerized tox-bootstrapd on Alpine linux
+[![Docker Build Status](https://img.shields.io/docker/build/nyoroon/tox-bootstrapd.svg)](https://hub.docker.com/r/nyoroon/tox-bootstrapd/)
+[![ImageLayers Size](https://img.shields.io/imagelayers/image-size/nyoroon/tox-bootstrapd/latest.svg)](https://hub.docker.com/r/nyoroon/tox-bootstrapd/)
+
+# Dockerized tox-bootstrapd based on Alpine linux
 
 ## How to use
 
