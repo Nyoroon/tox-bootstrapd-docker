@@ -11,7 +11,8 @@
 ### Using docker
 1. Copy .env.example to .env and edit it
 2. `docker build -t nyoroon/tox-bootstrapd .` (optional)
-3. ```
+3.
+```
 docker run --detach --name tox-bootstrapd \
   --volume toxdata:/var/lib/tox-bootstrapd \
   --port 33445:33445/udp --port 33445:33445 \
