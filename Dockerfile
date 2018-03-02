@@ -32,7 +32,7 @@ RUN touch /etc/tox-bootstrapd.conf \
 
 # copy binaries
 COPY --from=builder /usr/local/bin/tox-bootstrapd /usr/local/bin/
-COPY --from=builder /usr/local/lib64/libtoxcore.so* /usr/local/lib64/
+COPY --from=builder /usr/local/lib64/libtoxcore.so.2 /usr/local/lib/
 
 WORKDIR /var/lib/tox-bootstrapd
 VOLUME /var/lib/tox-bootstrapd
