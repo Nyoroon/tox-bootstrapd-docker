@@ -1,6 +1,6 @@
 FROM alpine:latest as builder
 
-ARG TOXCORE_VERSION=v0.2.0
+ARG TOXCORE_VERSION=v0.2.2
 
 WORKDIR /src
 
