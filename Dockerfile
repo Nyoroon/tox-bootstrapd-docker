@@ -13,7 +13,7 @@ RUN git clone https://github.com/TokTok/c-toxcore.git .
 RUN git checkout ${TOXCORE_VERSION}
 
 # build and install
-RUN cmake . -DBUILD_TOXAV=OFF -DENABLE_STATIC=OFF
+RUN cmake . -DBUILD_TOXAV=OFF -DENABLE_STATIC=OFF -DUSE_STDERR_LOGGER=ON
 RUN make -j$(nproc) && make install
 RUN strip /usr/local/bin/tox-bootstrapd
 

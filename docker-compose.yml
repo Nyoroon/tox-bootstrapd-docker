@@ -4,6 +4,7 @@ services:
   app:
     container_name: tox-bootstrapd
     image: nyoroon/tox-bootstrapd
+    restart: unless-stopped
     build: .
     env_file: .env
     ports:
