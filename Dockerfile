@@ -1,6 +1,6 @@
 FROM alpine:latest as builder
 
-ARG TOXCORE_VERSION=v0.2.8
+ARG TOXCORE_VERSION=v0.2.9
 
 WORKDIR /src
 
@@ -13,7 +13,12 @@ RUN git clone https://github.com/TokTok/c-toxcore.git .
 RUN git checkout ${TOXCORE_VERSION}
 
 # build and install
-RUN cmake . -DBUILD_TOXAV=OFF -DENABLE_STATIC=OFF -DUSE_STDERR_LOGGER=ON
+RUN cmake . \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DENABLE_SHARED=ON \
+  -DENABLE_STATIC=OFF \
+  -DBUILD_TOXAV=OFF \
+  -DBOOTSTRAP_DAEMON=ON -DUSE_STDERR_LOGGER=ON
 RUN make -j$(nproc) && make install
 RUN strip /usr/local/bin/tox-bootstrapd
 
@@ -42,6 +47,8 @@ COPY get-nodes.sh /usr/local/bin/
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
-CMD ["--config","/etc/tox-bootstrapd.conf","--log-backend","stdout","--foreground"]
+CMD ["--config","/etc/tox-bootstrapd.conf", \
+     "--log-backend", "stdout", \
+     "--foreground"]
 
 EXPOSE 443/tcp 3389/tcp 33445/tcp 33445/udp
